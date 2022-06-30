@@ -1,5 +1,9 @@
 .DEFAULT_GOAL := build
 
+dependencies:
+	asdf install
+	pre-commit install
+
 build_x64:
 	GOOS=darwin go build -o bin/<app>_mac_x64 .
 	GOOS=linux go build -o bin/<app>_linux_x64 .
