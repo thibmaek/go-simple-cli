@@ -1,0 +1,20 @@
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@main
+      - name: 'Install runtimes (via asdf)'
+        uses: asdf-vm/actions/install@v1
+      - name: 'Vet'
+        run: go vet
+      - name: 'Build'
+        run: make build -j
+      - name: 'Release'
+        uses: softprops/action-gh-release@v1
+        with:
+          files: ./bin/<app>*
