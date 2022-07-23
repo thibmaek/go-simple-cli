@@ -2,7 +2,9 @@
 
 dependencies:
 	asdf install
+	brew install golangci-lint
 	pre-commit install
+	go mod tidy
 
 build_x64:
 	GOOS=darwin go build -o bin/<app>_mac_x64 .
